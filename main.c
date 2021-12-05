@@ -21,21 +21,29 @@ void	check_gnl(char *str)
 
 int	main(void)
 {
-	int		fd;
+	int		fd1;
+	int		fd2;
 	size_t	i;
 	char	*ft_line;
 
 	i = 0;
-	fd = open("/Users/celadia/school21/GNL/RickRoll.txt", O_RDONLY);
-	if (fd == -1)
+	fd1 = open("/Users/celadia/school21/GNL/RickRoll.txt", O_RDONLY);
+	fd2 = open("/Users/celadia/school21/GNL/RickRol.txt", O_RDONLY);
+	if (fd1 == -1)
 		printf("File open error!\n");
-	while (i < 56)
+	if (fd2 == -1)
+		printf("File open error!\n");
+	while (i < 60)
 	{
-		printf("%02lu ", i + 1);
-		ft_line = get_next_line(fd);
+		printf("fd1 %02lu ", i + 1);
+		ft_line = get_next_line(fd1);
 		check_gnl(ft_line);
+//		printf("fd2 %02lu ", i + 1);
+//		ft_line = get_next_line(fd2);
+//		check_gnl(ft_line);
 		i++;
 	}
-	close(fd);
+	close(fd1);
+	close(fd2);
 	return (0);
 }

@@ -6,11 +6,13 @@
 /*   By: celadia <celadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 00:14:41 by celadia           #+#    #+#             */
-/*   Updated: 2021/12/05 00:14:41 by celadia          ###   ########.fr       */
+/*   Updated: 2021/12/05 01:19:35 by celadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
+// Work
 
 char	*get_read_file(int fd, char **stat_str)
 {
@@ -46,6 +48,8 @@ char	*get_next_line(int fd)
 	static char		**stat_str;
 	char			*line_str;
 
+	if (fd < 0 || BUFFER_SIZE < 0)
+		return (NULL);
 	if (!stat_str)
 	{
 		stat_str = malloc(sizeof(char *) * 1);
@@ -56,6 +60,8 @@ char	*get_next_line(int fd)
 	if (*line_str == '\0')
 	{
 		free(*stat_str);
+		free(stat_str);
+		free(line_str);
 		stat_str = NULL;
 		line_str = NULL;
 	}

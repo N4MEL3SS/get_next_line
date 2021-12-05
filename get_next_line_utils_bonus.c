@@ -12,12 +12,6 @@
 
 #include "get_next_line.h"
 
-void	*ft_free_ptr(void *ptr)
-{
-	free(ptr);
-	return (NULL);
-}
-
 ssize_t	ft_str_len(char *str)
 {
 	ssize_t		i;

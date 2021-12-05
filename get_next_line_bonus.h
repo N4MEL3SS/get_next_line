@@ -16,9 +16,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define FD_MAX 1024
+
 char		*get_next_line(int fd);
 
-void		*ft_free_ptr(void *ptr);
 ssize_t		ft_str_len(char *str);
 int			ft_str_chr(char *str, ssize_t *len);
 void		ft_str_cpy(char *str, ssize_t line_len);
