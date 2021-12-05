@@ -10,19 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
 
-# define FD_MAX 1024
+# define SSIZE_MAX 9223372036854775807
 
-char		*get_next_line(int fd);
+char	*get_next_line(int fd);
 
-ssize_t		ft_str_len(char *str);
-int			ft_str_chr(char *str, ssize_t *len);
-void		ft_str_cpy(char *str, ssize_t line_len);
-char		*ft_str_join(char *dst, char *src, size_t line_len);
+int		ft_fd_count(int fd);
+void	*ft_free_ptr(void *ptr);
+int		ft_str_chr(char *str, ssize_t *len);
+void	ft_str_cpy(char *str, ssize_t line_len);
+char	*ft_str_join(char *dst, char *src, ssize_t line_len);
 
-#endif //GET_NEXT_LINE_H
+#endif //GET_NEXT_LINE_BONUS_H

@@ -3,5 +3,6 @@ project(GNL C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_compile_options(-Wall -Wextra -Werror -D BUFFER_SIZE=45)
-add_executable(GNL main.c get_next_line.c get_next_line.h get_next_line_utils.c)
+add_compile_options(-Wall -Wextra -Werror -D BUFFER_SIZE=42)  #92233720368547
+#add_executable(GNL main.c get_next_line.c get_next_line.h get_next_line_utils.c)
+add_executable(GNL main.c get_next_line_bonus.c get_next_line_bonus.h get_next_line_utils_bonus.c)

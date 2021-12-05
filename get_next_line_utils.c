@@ -6,7 +6,7 @@
 /*   By: celadia <celadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 00:19:59 by celadia           #+#    #+#             */
-/*   Updated: 2021/12/05 01:34:15 by celadia          ###   ########.fr       */
+/*   Updated: 2021/12/05 05:54:08 by celadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@ void	*ft_free_ptr(void *ptr)
 {
 	free(ptr);
 	return (NULL);
-}
-
-ssize_t	ft_str_len(char *str)
-{
-	ssize_t		i;
-
-	i = 0;
-	while (*str && ++i)
-		str++;
-	return (i);
 }
 
 int	ft_str_chr(char *str, ssize_t *len)
@@ -48,12 +38,14 @@ void	ft_str_cpy(char *str, ssize_t line_len)
 	*str = '\0';
 }
 
-char	*ft_str_join(char *dst, char *src, size_t line_len)
+char	*ft_str_join(char *dst, char *src, ssize_t line_len)
 {
 	char	*temp_join;
 	char	*temp_dst;
 	char	*join;
 
+	if (*src == '\0')
+		return (dst);
 	line_len++;
 	join = malloc(sizeof(char) * (line_len));
 	temp_join = join;

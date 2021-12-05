@@ -6,20 +6,28 @@
 /*   By: celadia <celadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 00:19:59 by celadia           #+#    #+#             */
-/*   Updated: 2021/12/05 01:34:15 by celadia          ###   ########.fr       */
+/*   Updated: 2021/12/05 06:59:19 by celadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-ssize_t	ft_str_len(char *str)
+int	ft_fd_count(int fd)
 {
-	ssize_t		i;
+	int			i;
+	char		str;
 
-	i = 0;
-	while (*str && ++i)
-		str++;
+	str = '\0';
+	i = fd;
+	while (read(i, &str, 0) != -1)
+		i++;
 	return (i);
+}
+
+void	*ft_free_ptr(void *ptr)
+{
+	free(ptr);
+	return (NULL);
 }
 
 int	ft_str_chr(char *str, ssize_t *len)
@@ -42,12 +50,14 @@ void	ft_str_cpy(char *str, ssize_t line_len)
 	*str = '\0';
 }
 
-char	*ft_str_join(char *dst, char *src, size_t line_len)
+char	*ft_str_join(char *dst, char *src, ssize_t line_len)
 {
 	char	*temp_join;
 	char	*temp_dst;
 	char	*join;
 
+	if (*src == '\0')
+		return (dst);
 	line_len++;
 	join = malloc(sizeof(char) * (line_len));
 	temp_join = join;
