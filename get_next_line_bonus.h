@@ -6,7 +6,7 @@
 /*   By: celadia <celadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 00:19:51 by celadia           #+#    #+#             */
-/*   Updated: 2021/12/05 06:43:41 by celadia          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:13:52 by celadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define SSIZE_MAX 9223372036854775807
-# define FD_SIZE 1024
+# define FD_MAX 10240
 
 char	*get_next_line(int fd);
 
-int		ft_fd_count(int fd);
 void	*ft_free_ptr(void *ptr);
 int		ft_str_chr(char *str, ssize_t *len);
 void	ft_str_cpy(char *str, ssize_t line_len);

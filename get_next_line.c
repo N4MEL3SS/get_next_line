@@ -6,7 +6,7 @@
 /*   By: celadia <celadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 00:14:41 by celadia           #+#    #+#             */
-/*   Updated: 2021/12/05 06:10:23 by celadia          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:27:50 by celadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ char	*get_read_file(int fd, char *stat_str)
 			full_len += line_len;
 			line_str = ft_str_join(line_str, stat_str, full_len);
 			stat_len = read(fd, stat_str, BUFFER_SIZE);
-			if (stat_len == -1 || !line_str)
-				return (line_str);
+			if (!line_str || stat_len == -1)
+				return (NULL);
 			*(stat_str + stat_len) = '\0';
 		}
 	}
@@ -44,8 +44,9 @@ char	*get_next_line(int fd)
 {
 	static char		*stat_str;
 	char			*line_str;
+	char			check;
 
-	if (fd < 0 || BUFFER_SIZE < 0 || BUFFER_SIZE > SSIZE_MAX - 1)
+	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, &check, 0) == -1)
 		return (NULL);
 	if (!stat_str)
 	{
@@ -55,7 +56,7 @@ char	*get_next_line(int fd)
 		*stat_str = '\0';
 	}
 	line_str = get_read_file(fd, stat_str);
-	if (*line_str == '\0')
+	if (line_str == NULL || *line_str == '\0')
 	{
 		stat_str = ft_free_ptr(stat_str);
 		line_str = ft_free_ptr(line_str);

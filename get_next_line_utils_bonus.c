@@ -12,22 +12,20 @@
 
 #include "get_next_line_bonus.h"
 
-int	ft_fd_count(int fd)
-{
-	int			i;
-	char		str;
-
-	str = '\0';
-	i = fd;
-	while (read(i, &str, 0) != -1)
-		i++;
-	return (i);
-}
-
 void	*ft_free_ptr(void *ptr)
 {
 	free(ptr);
 	return (NULL);
+}
+
+void	ft_str_cpy(char *str, ssize_t line_len)
+{
+	char		*shift;
+
+	shift = str + line_len;
+	while (*shift)
+		*(str++) = *(shift++);
+	*str = '\0';
 }
 
 int	ft_str_chr(char *str, ssize_t *len)
@@ -40,16 +38,6 @@ int	ft_str_chr(char *str, ssize_t *len)
 	return (0);
 }
 
-void	ft_str_cpy(char *str, ssize_t line_len)
-{
-	char		*temp;
-
-	temp = str + line_len;
-	while (*temp)
-		*(str++) = *(temp++);
-	*str = '\0';
-}
-
 char	*ft_str_join(char *dst, char *src, ssize_t line_len)
 {
 	char	*temp_join;
@@ -60,6 +48,8 @@ char	*ft_str_join(char *dst, char *src, ssize_t line_len)
 		return (dst);
 	line_len++;
 	join = malloc(sizeof(char) * (line_len));
+	if (!join)
+		return (NULL);
 	temp_join = join;
 	temp_dst = dst;
 	while (*dst && --line_len)
