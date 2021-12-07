@@ -19,21 +19,28 @@ void	check_gnl(char *str)
 	temp = NULL;
 }
 
-int	main(void)
+void	start_gnl(int fd, int n)
 {
-	int		fd;
-	size_t	i;
 	char	*ft_line;
+	int		i;
 
-	fd = open("/Users/celadia/school21/GNL/TakeOnMe.txt", O_RDONLY);
-	printf("fd: %i\n", fd);
 	i = 0;
-	while (++i <= 42)
+	while (++i <= n)
 	{
-		printf("fd1 %02lu ", i);
+		printf("fd1 %02d ", i);
 		ft_line = get_next_line(fd);
 		check_gnl(ft_line);
 	}
+	printf("\n");
+}
+
+int	main(void)
+{
+	int		fd;
+
+	fd = open("/Users/celadia/school21/GNL/RickRoll.txt", O_RDONLY);
+	printf("fd: %i\n", fd);
+	start_gnl(fd, 69);
 	close(fd);
 	return (0);
 }

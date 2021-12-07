@@ -6,7 +6,7 @@
 /*   By: celadia <celadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 00:14:41 by celadia           #+#    #+#             */
-/*   Updated: 2021/12/07 16:23:04 by celadia          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:23:50 by celadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*get_next_line(int fd)
 		stat_str[fd] = malloc(sizeof(char) * ((ssize_t)BUFFER_SIZE + 1));
 		if (!stat_str[fd])
 			return (NULL);
+		stat_str[fd][0] = '\0';
 	}
 	line_str = get_read_file(fd, stat_str[fd]);
 	if (line_str == NULL || *line_str == '\0')

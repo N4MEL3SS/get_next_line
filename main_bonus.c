@@ -19,53 +19,34 @@ void	check_gnl(char *str)
 	temp = NULL;
 }
 
+void	start_gnl(int fd, int n)
+{
+	char	*ft_line;
+	int		i;
+
+	i = 0;
+	while (++i <= n)
+	{
+		printf("fd_%i: %02d ", fd, i);
+		ft_line = get_next_line(fd);
+		check_gnl(ft_line);
+	}
+	printf("\n");
+}
+
 int	main(void)
 {
-	int		fd1;
-	int		fd2;
-	size_t	i;
-	char	*ft_line;
+	int		fd[2];
 
-	fd1 = open("/Users/celadia/school21/GNL/RickRoll.txt", O_RDONLY);
-	fd2 = open("/Users/celadia/school21/GNL/TakeOnMe.txt", O_RDONLY);
-	printf("fd1: %i\n", fd1);
-	printf("fd2: %i\n", fd2);
-	i = 0;
-	while (i < 5)
-	{
-		printf("fd1 %02lu ", i + 1);
-		ft_line = get_next_line(fd1);
-		check_gnl(ft_line);
-		i++;
-	}
-	i = 0;
-	printf("\n");
-	while (i < 7)
-	{
-		printf("fd2 %02lu ", i + 1);
-		ft_line = get_next_line(fd2);
-		check_gnl(ft_line);
-		i++;
-	}
-	i = 0;
-	printf("\n");
-	while (i < 3)
-	{
-		printf("fd1 %02lu ", i + 1);
-		ft_line = get_next_line(fd1);
-		check_gnl(ft_line);
-		i++;
-	}
-	i = 0;
-	printf("\n");
-	while (i < 5)
-	{
-		printf("fd2 %02lu ", i + 1);
-		ft_line = get_next_line(fd2);
-		check_gnl(ft_line);
-		i++;
-	}
-	close(fd1);
-	close(fd2);
+	fd[0] = open("/Users/celadia/school21/GNL/TakeOnMe.txt", O_RDONLY);
+	fd[1] = open("/Users/celadia/school21/GNL/RickRoll.txt", O_RDONLY);
+	printf("fd1: %i\n", fd[0]);
+	printf("fd2: %i\n", fd[1]);
+	start_gnl(fd[0], 7);
+	start_gnl(fd[1], 5);
+	start_gnl(fd[0], 5);
+	start_gnl(fd[1], 3);
+	close(fd[0]);
+	close(fd[1]);
 	return (0);
 }
